@@ -9,12 +9,11 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-namespace {
-	typedef std::map<DIR *, error_t> dirpToError_t;
-	dirpToError_t dirpToError;
-	typedef std::map<int, int> fdToError_t;
-	fdToError_t fdToError;
-};
+typedef std::map<DIR *, error_t> dirpToError_t;
+static dirpToError_t dirpToError;
+
+typedef std::map<int, int> fdToError_t;
+static fdToError_t fdToError;
 
 struct dirent *readdir(DIR *dirp) {
 	dirpToError_t::const_iterator found = dirpToError.find(dirp);
